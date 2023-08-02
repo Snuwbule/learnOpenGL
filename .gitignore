@@ -26,3 +26,6 @@ hellOpenGL.make
 Makefile
 hellOpenGL.vcxproj
 learnOpenGL.sln
+.vscode/
+.vs/
+build/
