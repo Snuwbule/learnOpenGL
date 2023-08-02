@@ -66,9 +66,6 @@ int main() {
         glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
         std::cerr << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
     }
-    //Clean Up
-    delete success;
-    delete[] infoLog;
 
     // fragment shader
     const char* fragShadSrc = "#version 330 core\n"
@@ -87,18 +84,30 @@ int main() {
         glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
         std::cerr << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
     }
-    
-    //Clean up and make success and info log nullptr
-    delete success;
-    delete[] infoLog;
-    success = nullptr;
-    infoLog = nullptr;
 
     //Create Shader Program
     unsigned int shaderProgram = glCreateProgram();
     glAttachShader(shaderProgram, vertexShader);
     glAttachShader(shaderProgram, fragmentShader);
     glLinkProgram(shaderProgram);
+
+    glGetProgramiv(shaderProgram, GL_LINK_STATUS, success);
+
+    if(!success) {
+    glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
+        glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
+        std::cerr << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
+    }
+    
+    //Clean Up
+    delete success;
+    delete[] infoLog;
+    success = nullptr;
+    infoLog = nullptr;
+
+    glDeleteShader(vertexShader);
+    glDeleteShader(fragmentShader);
+    glUseProgram(shaderProgram);
 
     glfwSwapInterval(1);
     // Main render loop
