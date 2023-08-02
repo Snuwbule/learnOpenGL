@@ -13,7 +13,8 @@ project "hellOpenGL"
    kind "ConsoleApp"
    language "C++"
    targetdir "bin/%{cfg.buildcfg}"
-   
+   architecture "x64"
+
    files {  srcDir .. "**.h",
             srcDir .."**.c",
             srcDir .. "**.cpp" 
@@ -35,7 +36,6 @@ project "hellOpenGL"
    end
    
    if os.host() == "windows" then
-      architecture "x64"
       characterset ("MBCS")
       links {
          "glfw3",
@@ -44,6 +44,16 @@ project "hellOpenGL"
 
       libdirs {
          winLibPath
+      }
+   end
+
+   if os.host() == "linux" then
+      links {
+         "glfw3",
+         "gl"
+      }
+      libdirs {
+         linLibPath
       }
    end
 
