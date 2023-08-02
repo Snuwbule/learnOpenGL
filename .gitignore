@@ -26,6 +26,7 @@ CMakeLists.txt
 Makefile
 *.vcxproj
 *.sln
+*.vcxproj.filters
 *.vcxproj.user
 .vscode/
 .vs/
