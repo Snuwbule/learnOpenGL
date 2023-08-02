@@ -33,7 +33,20 @@ project "hellOpenGL"
          macLibPath
       }
    end
-         
+   
+   if os.host() == "windows" then
+      architecture "x64"
+      characterset ("MBCS")
+      links {
+         "glfw3",
+         "opengl32"
+      }
+
+      libdirs {
+         winLibPath
+      }
+   end
+
    filter "configurations:Debug"
       defines { "DEBUG" }
       symbols "On"

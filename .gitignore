@@ -18,14 +18,15 @@ obj/
 
 # project file stuffs
 .DS_Store
-hellOpenGL.cmake
+*.cmake
 CMakeLists.txt
-learnOpenGL.xcworkspace/contents.xcworkspacedata
-hellOpenGL.xcodeproj/project.pbxproj
-hellOpenGL.make
+*.xcworkspace/contents.xcworkspacedata
+*.xcodeproj/project.pbxproj
+*.make
 Makefile
-hellOpenGL.vcxproj
-learnOpenGL.sln
+*.vcxproj
+*.sln
+*.vcxproj.user
 .vscode/
 .vs/
 build/
