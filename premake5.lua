@@ -14,7 +14,7 @@ project "hellOpenGL"
    language "C++"
    targetdir "bin/%{cfg.buildcfg}"
    architecture "x64"
-
+   cppdialect "C++17"
    files {  srcDir .. "**.h",
             srcDir .."**.c",
             srcDir .. "**.cpp" 

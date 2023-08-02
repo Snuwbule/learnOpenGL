@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="platformHandling">
+      <UniqueIdentifier>{6FFFA9C0-5BF8-C812-842A-AE977082A81E}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\platformHandling\errorOutput.h">
+      <Filter>platformHandling</Filter>
+    </ClInclude>
+    <ClInclude Include="src\windowHandling.h" />
+    <ClInclude Include="src\platformHandling\OSDetection.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\glad.c" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\platformHandling\errorOutput.cpp">
+      <Filter>platformHandling</Filter>
+    </ClCompile>
+    <ClCompile Include="src\windowHandling.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\shaders\VertexShader.glsl" />
+    <None Include="src\shaders\fragmentShader.glsl" />
+  </ItemGroup>
+</Project>

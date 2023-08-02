@@ -1,7 +1,35 @@
+#include <fstream>
 #include <iostream>
+#include <string>
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 #include "windowHandling.h"
+#include "platformHandling/errorOutput.h"
+
+const GLchar* readGLSL(const char* filePath) {
+	std::ifstream shader(filePath);
+	if (!shader.is_open()) {
+		outputError("Couldn't Open GLSL File.", true);
+		shader.clear();
+		shader.close();
+		return "";
+	}
+
+	shader.seekg(0, std::ios::end);
+	size_t length = shader.tellg();
+	shader.seekg(0, std::ios::beg);
+
+	char* buffer = new char[length + 1];
+	shader.read(buffer, length);
+	buffer[length] = '\0';
+
+	shader.clear();
+	shader.close();
+	const GLchar* fileContent = buffer;
+	delete buffer;
+	buffer = nullptr;
+	return fileContent;
+}
 
 int main() {
     glfwInit();
@@ -34,12 +62,7 @@ int main() {
     glfwSetFramebufferSizeCallback(window, winHandle::frame_buffer_size_callback);
 
     //Vertex shader
-    const char* vertexShaderSource = "#version 330 core\n"
-    "layout (location = 0) in vec3 aPos;\n"
-    "void main()\n"
-    "{\n"
-    "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-    "}\0";
+	const GLchar* vertexShaderSource = readGLSL("shaders/VertexShader.glsl");
 
     //Vertex Shader Compile
 	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -56,11 +79,7 @@ int main() {
     }
 
     // fragment shader
-    const char* fragShadSrc = "#version 330 core\n"
-    "out vec4 FragColor;\n"
-    "void main() {\n"
-        "FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-    "}\0";
+    const GLchar* fragShadSrc = readGLSL("shaders/fragmentShader.glsl");
 
 	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fragmentShader, 1, &fragShadSrc, NULL);
@@ -135,6 +154,7 @@ int main() {
 
     }
 
+	glDeleteProgram(vertexShader);
     glfwDestroyWindow(window);
     glfwTerminate();
     return 0;
