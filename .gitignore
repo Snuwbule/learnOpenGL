@@ -9,12 +9,10 @@
 *.mod
 *.smod
 
-# macOS
-.DS_Store
-
 # binary
 bin/
 obj/
 *.exe
 *.out
 *.app
+.DS_Store
