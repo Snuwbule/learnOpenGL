@@ -15,4 +15,14 @@ obj/
 *.exe
 *.out
 *.app
+
+# project file stuffs
 .DS_Store
+hellOpenGL.cmake
+CMakeLists.txt
+learnOpenGL.xcworkspace/contents.xcworkspacedata
+hellOpenGL.xcodeproj/project.pbxproj
+hellOpenGL.make
+Makefile
+hellOpenGL.vcxproj
+learnOpenGL.sln
